@@ -102,6 +102,8 @@ class TaskCard extends StatelessWidget {
               ),
               child: SizedBox(
                 child: Column(
+                  crossAxisAlignment:
+                      CrossAxisAlignment.stretch, //made Wrap fit the entire row
                   children: [
                     Row(
                       children: [
@@ -134,62 +136,64 @@ class TaskCard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: Wrap(
+                      child:
+                          // Align(  //aligns the row starting from the left
+                          //   alignment: Alignment.centerLeft,
+                          //   child:
+                          Wrap(
+                        direction: Axis.horizontal,
+                        alignment: WrapAlignment
+                            .spaceBetween, //adds space between, like Expanded or Spacer() for Flex widgets (row or column)
                         //Wrap - place in row if space, otherwise wrap
                         children: [
-                          SizedBox(
-                            height: 56,
-                            width: 180,
-                            child: Stack(
+                          FittedBox(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment
+                                  .start, //align both rows to the left
                               children: [
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.timer,
-                                        size: 24,
-                                        color: Color(0xFF4C4C4C),
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        task.completeBy,
-                                        style: textStyle,
-                                      ),
-                                    ],
-                                  ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.timer,
+                                      size: 24,
+                                      color: Color(0xFF4C4C4C),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      task.completeBy,
+                                      style: textStyle,
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.remove_circle_outline,
-                                        size: 24,
-                                        color: Color(0xFF4C4C4C),
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
-                                      Text(
-                                        task.getCompletionStatusText(),
-                                        style: textStyle,
-                                      ),
-                                    ],
-                                  ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.remove_circle_outline,
+                                      size: 24,
+                                      color: Color(0xFF4C4C4C),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      task.getCompletionStatusText(),
+                                      style: textStyle,
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ),
-                          statusButton
+                          statusButton,
                         ],
                       ),
                     ),
+                    // ),
                   ],
                 ),
               ),
