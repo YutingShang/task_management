@@ -23,6 +23,67 @@ class TaskCard extends StatelessWidget {
         letterSpacing: 0.1,
         fontFamily: 'Roboto');
 
+    var notStartedButton = OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+        side: const BorderSide(color: Color(0xFF79747E)),
+        shape: const StadiumBorder(),
+        padding:
+            const EdgeInsets.only(left: 16, right: 24, top: 10, bottom: 10),
+      ),
+      onPressed: () {
+        print('onPressed');
+      },
+      icon: const Padding(
+        padding: EdgeInsets.zero,
+        child: Icon(
+          Icons.start,
+          size: 18,
+        ),
+      ),
+      label: const Text('Start',
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF6750A4),
+              letterSpacing: 0.1,
+              fontFamily: 'Roboto')),
+    );
+
+    var inProgressButton = OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: const Color(0xFF6750A4),
+        side: const BorderSide(color: Color(0xFF6750A4)),
+        shape: const StadiumBorder(),
+        padding:
+            const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 10),
+      ),
+      onPressed: () {
+        print('onPressed');
+      },
+      icon: const Padding(
+        padding: EdgeInsets.zero,
+        child: Icon(
+          Icons.check_circle,
+          size: 18,
+          color: Colors.white,
+        ),
+      ),
+      label: const Text('Mark as Complete',
+          style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+              letterSpacing: 0.1,
+              fontFamily: 'Roboto')),
+    );
+
+    var statusButton;
+    if (task.status == CompletionStatus.notStarted) {
+      statusButton = notStartedButton;
+    } else if (task.status == CompletionStatus.inProgress) {
+      statusButton = inProgressButton;
+    }
+
     //return const Text('TODO: Make your card component here');
     return Column(
       //wrap your card in a Column because the inner Column take full height
@@ -40,8 +101,6 @@ class TaskCard extends StatelessWidget {
                 bottom: 16,
               ),
               child: SizedBox(
-                //height: 216,
-                // fit:BoxFit.fitHeight,
                 child: Column(
                   children: [
                     Row(
@@ -75,74 +134,59 @@ class TaskCard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child: Row(
+                      child: Wrap(
+                        //Wrap - place in row if space, otherwise wrap
                         children: [
-                          Expanded(
-                            child: Column(
+                          SizedBox(
+                            height: 56,
+                            width: 180,
+                            child: Stack(
                               children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.timer,
-                                      size: 24,
-                                      color: Color(0xFF4C4C4C),
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      task.completeBy,
-                                      style: textStyle,
-                                    ),
-                                  ],
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.timer,
+                                        size: 24,
+                                        color: Color(0xFF4C4C4C),
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        task.completeBy,
+                                        style: textStyle,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_circle_outline,
-                                      size: 24,
-                                      color: Color(0xFF4C4C4C),
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(
-                                      task.getCompletionStatusText(),
-                                      style: textStyle,
-                                    ),
-                                  ],
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.remove_circle_outline,
+                                        size: 24,
+                                        color: Color(0xFF4C4C4C),
+                                      ),
+                                      const SizedBox(
+                                        width: 8,
+                                      ),
+                                      Text(
+                                        task.getCompletionStatusText(),
+                                        style: textStyle,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                          OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFF79747E)),
-                              shape: const StadiumBorder(),
-                              padding: const EdgeInsets.only(
-                                  left: 16, right: 24, top: 10, bottom: 10),
-                            ),
-                            onPressed: () {
-                              print('onPressed');
-                            },
-                            icon: const Padding(
-                              padding: EdgeInsets.zero,
-                              child: Icon(
-                                Icons.start,
-                                size: 18,
-                              ),
-                            ),
-                            label: const Text('Start',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF6750A4),
-                                    letterSpacing: 0.1,
-                                    fontFamily: 'Roboto')),
-                          ),
+                          statusButton
                         ],
                       ),
                     ),
