@@ -136,15 +136,12 @@ class TaskCard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 16),
-                      child:
-                          // Align(  //aligns the row starting from the left
-                          //   alignment: Alignment.centerLeft,
-                          //   child:
-                          Wrap(
+                      child: Wrap(
+                        //Wrap - place in row if space, otherwise wrap
                         direction: Axis.horizontal,
                         alignment: WrapAlignment
                             .spaceBetween, //adds space between, like Expanded or Spacer() for Flex widgets (row or column)
-                        //Wrap - place in row if space, otherwise wrap
+                        runSpacing: 8,
                         children: [
                           FittedBox(
                             child: Column(
@@ -193,7 +190,6 @@ class TaskCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // ),
                   ],
                 ),
               ),
