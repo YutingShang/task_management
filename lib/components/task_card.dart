@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_management/data/task_model.dart';
+import 'package:flutter/rendering.dart';
 
 class TaskCard extends StatelessWidget {
   final Task task;
@@ -78,10 +79,13 @@ class TaskCard extends StatelessWidget {
     );
 
     var statusButton;
+    var buttonSize;
     if (task.status == CompletionStatus.notStarted) {
       statusButton = notStartedButton;
+      buttonSize = 102;
     } else if (task.status == CompletionStatus.inProgress) {
       statusButton = inProgressButton;
+      buttonSize = 191;
     }
 
     //return const Text('TODO: Make your card component here');
@@ -128,7 +132,6 @@ class TaskCard extends StatelessWidget {
                     //   height: 24,
                     // ),
                     if (task.imageUrl != null) Image.network(task.imageUrl!),
-
                     Padding(
                       padding: const EdgeInsets.only(
                           top: 8, bottom: 8, right: 16, left: 16),
@@ -194,7 +197,9 @@ class TaskCard extends StatelessWidget {
                               ],
                             ),
                           ),
-                          statusButton,
+                          AdjustableLineButtonWidget(
+                              statusButton: statusButton,
+                              buttonSize: buttonSize)
                         ],
                       ),
                     ),
@@ -204,5 +209,31 @@ class TaskCard extends StatelessWidget {
             )),
       ],
     );
+  }
+}
+
+class AdjustableLineButtonWidget extends StatelessWidget {
+  final OutlinedButton statusButton;
+  final buttonSize;
+  const AdjustableLineButtonWidget(
+      {super.key, required this.statusButton, required this.buttonSize});
+
+  @override
+  Widget build(BuildContext context) {
+    // debugPaintSizeEnabled = true;
+    return LayoutBuilder(builder: (context, constraints) {
+      final leftTextSize = 120; //width of the time and status
+
+      final bool buttonOnNextLine =
+          constraints.maxWidth - buttonSize < leftTextSize;
+      if (!buttonOnNextLine) {
+        // print('buttonSize $buttonSize');
+        return statusButton;
+      } else {
+        // print('buttonSize $buttonSize');
+        // print('context ${constraints.maxWidth}');
+        return Align(alignment: Alignment.centerRight, child: statusButton);
+      }
+    });
   }
 }
