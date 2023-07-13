@@ -95,8 +95,8 @@ class TaskCard extends StatelessWidget {
             elevation: 5,
             child: Padding(
               padding: const EdgeInsets.only(
-                right: 16,
-                left: 16,
+                //  right: 16,
+                //  left: 16,
                 top: 24,
                 bottom: 16,
               ),
@@ -105,26 +105,33 @@ class TaskCard extends StatelessWidget {
                   crossAxisAlignment:
                       CrossAxisAlignment.stretch, //made Wrap fit the entire row
                   children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.checklist,
-                          size: 28,
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Text(
-                          task.title,
-                          style: titleStyle,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          right: 16, left: 16, bottom: 24),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.checklist,
+                            size: 28,
+                          ),
+                          const SizedBox(
+                            width: 16,
+                          ),
+                          Text(
+                            task.title,
+                            style: titleStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                    // const SizedBox(
+                    //   height: 24,
+                    // ),
+                    if (task.imageUrl != null) Image.network(task.imageUrl!),
+
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8, bottom: 8, right: 16, left: 16),
                       child: Text(task.description,
                           style: const TextStyle(
                             fontSize: 14,
@@ -135,7 +142,8 @@ class TaskCard extends StatelessWidget {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 16),
+                      padding:
+                          const EdgeInsets.only(top: 16, right: 16, left: 16),
                       child: Wrap(
                         //Wrap - place in row if space, otherwise wrap
                         direction: Axis.horizontal,

@@ -3,14 +3,18 @@ import 'package:task_management/data/task_model.dart';
 final List<Task> taskList = [
   Task(
     title: 'Clean Spillage On Aisle 4',
-    description: 'Clear up using mop & cleaning solution found in store cupboard B',
+    description:
+        'Clear up using mop & cleaning solution found in store cupboard B',
     creator: 'John Smith',
     status: CompletionStatus.notStarted,
     completeBy: "08:30 am",
   ),
   Task(
     title: 'Unpack Deliveries',
-    description: 'Delivieries in Bay 6 need to be unpacked before the store opens',
+    description:
+        'Delivieries in Bay 6 need to be unpacked before the store opens',
+    imageUrl:
+        'https://i.pinimg.com/564x/81/0f/63/810f6358f7981bc162534e8208cfcc0a.jpg',
     creator: 'John Smith',
     status: CompletionStatus.inProgress,
     completeBy: "09:00 am",

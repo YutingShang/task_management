@@ -29,7 +29,15 @@ class _MyHomePageState extends State<MyHomePage> {
           }),
           Expanded(
             //TODO: Later this needs to be replaced with a list of cards
-            child: Center(child: TaskCard(taskList[0])),
+            child: Center(
+                child: //TaskCard(taskList[0])
+                    ListView.builder(
+                        itemCount: taskList.length,
+                        itemBuilder: (context, index) {
+                          return TaskCard(
+                            taskList[index],
+                          );
+                        })),
           ),
         ],
       ),
