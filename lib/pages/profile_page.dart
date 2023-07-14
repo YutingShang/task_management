@@ -8,21 +8,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final titleStyle = theme.textTheme.titleSmall!.copyWith(
-      fontSize: 16,
-      fontFamily: 'Roboto',
-      fontWeight: FontWeight.w500,
-      color: Color(0xFF49454F),
-      letterSpacing: 0.1,
-    );
-
-    final textStyle = theme.textTheme.titleSmall!.copyWith(
-        fontSize: 14,
-        fontWeight: FontWeight.w500,
-        color: Color(0xFF4C4C4C),
-        letterSpacing: 0.1,
-        fontFamily: 'Roboto');
+    // final theme = Theme.of(context);
 
     final person = ramona; //change the profile here
 

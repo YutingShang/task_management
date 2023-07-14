@@ -30,6 +30,5 @@ class Task {
       case CompletionStatus.cancelled:
         return 'Cancelled';
     }
-    ;
   }
 }
