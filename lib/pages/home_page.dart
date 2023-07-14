@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task_management/components/task_card.dart';
 import 'package:task_management/data/task_model.dart';
 import 'package:task_management/data/tasks.dart';
+import 'package:task_management/pages/profile_page.dart';
+import 'package:task_management/pages/task_detail_page.dart';
 
 import '../components/filter_pills.dart';
 
@@ -23,7 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Task Management'),
         centerTitle: true,
-        leading: const Icon(Icons.person),
+        leading: GestureDetector(
+            onTap: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfilePage()))
+                },
+            child: const Icon(Icons.person)),
       ),
       body: Column(
         children: [
@@ -63,8 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     ListView.builder(
                         itemCount: filteredList.length,
                         itemBuilder: (context, index) {
-                          return TaskCard(
-                            filteredList[index],
+                          return GestureDetector(
+                            onTap: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          TaskDetailPage(filteredList[index])))
+                            },
+                            child: TaskCard(
+                              filteredList[index],
+                            ),
                           );
                         })),
           ),

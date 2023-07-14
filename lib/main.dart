@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_management/pages/home_page.dart';
+import 'package:task_management/pages/profile_page.dart';
 import 'package:task_management/pages/task_detail_page.dart';
 
 import 'data/task_model.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case TaskDetailPage.routeName:
             page = TaskDetailPage(settings.arguments as Task);
+            break;
+          case ProfilePage.routeName:
+            page = const ProfilePage();
             break;
           case MyHomePage.routeName:
           default:
